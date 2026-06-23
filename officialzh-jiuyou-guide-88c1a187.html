@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+  <title>九游娱乐 · 入口即桥梁</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    body {
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+      background: #f4f9fc;
+      color: #1c2a38;
+      line-height: 1.6;
+      padding: 0 1rem;
+    }
+    .page {
+      max-width: 720px;
+      margin: 2rem auto;
+    }
+
+    /* 蓝绿色点缀网格背景 */
+    .hero {
+      position: relative;
+      padding: 3rem 1.5rem;
+      border-radius: 28px;
+      background: #eff7fa;
+      background-image:
+        linear-gradient(rgba(30, 140, 160, 0.06) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(30, 140, 160, 0.06) 1px, transparent 1px);
+      background-size: 28px 28px;
+      margin-bottom: 2.2rem;
+      box-shadow: 0 6px 18px rgba(30, 110, 130, 0.08);
+    }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 28px;
+      background: radial-gradient(circle at 85% 15%, rgba(76, 186, 190, 0.08) 0%, transparent 55%);
+      pointer-events: none;
+    }
+    .hero h1 {
+      font-size: 2.1rem;
+      font-weight: 540;
+      letter-spacing: -0.02em;
+      color: #0c3c44;
+      position: relative;
+      z-index: 1;
+    }
+    .hero h1 small {
+      display: block;
+      font-size: 1rem;
+      font-weight: 370;
+      color: #32626e;
+      margin-top: 0.3rem;
+      letter-spacing: 0.02em;
+    }
+    .hero .tagline {
+      margin-top: 1rem;
+      font-size: 0.95rem;
+      color: #2b5b68;
+      max-width: 34em;
+      position: relative;
+      z-index: 1;
+    }
+
+    /* 承接段落 — 自然引出入口 */
+    .bridge-note {
+      background: white;
+      border-radius: 22px;
+      padding: 1.6rem 1.8rem;
+      margin-bottom: 1.8rem;
+      box-shadow: 0 3px 12px rgba(0,0,0,0.02);
+      border-left: 4px solid #319baa;
+    }
+    .bridge-note p {
+      margin-bottom: 1.2rem;
+      font-size: 0.98rem;
+      color: #1f3845;
+    }
+    .bridge-note p:last-child {
+      margin-bottom: 0;
+    }
+
+    /* 特点卡片网格 */
+    .feature-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+      margin-bottom: 2.2rem;
+    }
+    .feature-card {
+      background: white;
+      border-radius: 20px;
+      padding: 1.3rem 1.2rem;
+      box-shadow: 0 2px 10px rgba(30, 130, 140, 0.05);
+      transition: box-shadow 0.2s, transform 0.2s;
+      border: 1px solid #eaf2f5;
+    }
+    .feature-card:hover {
+      box-shadow: 0 8px 22px rgba(30, 130, 140, 0.12);
+      transform: translateY(-2px);
+    }
+    .feature-card .icon {
+      display: inline-block;
+      font-size: 1.6rem;
+      margin-bottom: 0.4rem;
+      color: #319baa;
+    }
+    .feature-card h3 {
+      font-size: 1.1rem;
+      font-weight: 520;
+      color: #0a3c47;
+      margin-bottom: 0.3rem;
+      letter-spacing: -0.01em;
+    }
+    .feature-card p {
+      font-size: 0.9rem;
+      color: #325f6b;
+      line-height: 1.5;
+    }
+
+    /* 温和结尾 + FAQ摘要 */
+    .gentle-outro {
+      background: #deeef3;
+      border-radius: 24px;
+      padding: 1.8rem 1.8rem 2rem;
+      margin-bottom: 2.2rem;
+    }
+    .gentle-outro h2 {
+      font-size: 1.2rem;
+      font-weight: 510;
+      color: #07414d;
+      margin-bottom: 0.8rem;
+    }
+    .gentle-outro p {
+      font-size: 0.95rem;
+      color: #1b4b58;
+      margin-bottom: 0.9rem;
+    }
+    .gentle-outro .faq-preview {
+      list-style: none;
+      padding: 0;
+      margin: 1rem 0 0;
+    }
+    .gentle-outro .faq-preview li {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid rgba(30, 120, 135, 0.12);
+      display: flex;
+      gap: 0.4rem;
+    }
+    .gentle-outro .faq-preview li:last-child {
+      border-bottom: none;
+    }
+    .gentle-outro .faq-preview .q {
+      font-weight: 460;
+      color: #06363f;
+      flex-shrink: 0;
+    }
+    .gentle-outro .faq-preview .a {
+      color: #1f5b68;
+    }
+
+    /* 链接风格 */
+    .inline-link {
+      color: #1b7f8e;
+      text-decoration: none;
+      font-weight: 460;
+      border-bottom: 1px solid rgba(30, 140, 160, 0.25);
+      transition: border-color 0.2s, color 0.2s;
+    }
+    .inline-link:hover {
+      color: #075a68;
+      border-bottom-color: #075a68;
+    }
+
+    /* 响应式 */
+    @media (max-width: 540px) {
+      .hero h1 { font-size: 1.7rem; }
+      .feature-grid { grid-template-columns: 1fr; }
+      .gentle-outro { padding: 1.4rem; }
+      .bridge-note { padding: 1.2rem; }
+    }
+
+    /* 附加场景微块 */
+    .scenario-note {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.8rem;
+      background: #ffffffcc;
+      backdrop-filter: blur(2px);
+      border-radius: 18px;
+      padding: 1rem 1.2rem;
+      margin-bottom: 2rem;
+      border: 1px solid #d2e6ec;
+    }
+    .scenario-note span {
+      font-size: 0.85rem;
+      background: #e4f0f5;
+      padding: 0.2rem 0.8rem;
+      border-radius: 40px;
+      color: #145b6a;
+      white-space: nowrap;
+    }
+  </style>
+</head>
+<body>
+<div class="page">
+  <!-- hero 开场短句 -->
+  <div class="hero">
+    <h1>
+      稳定入口 · 界面叙述
+      <small>一次清晰的路径，胜过十次模糊的跳转</small>
+    </h1>
+    <div class="tagline">
+      对于经常使用在线娱乐服务的用户而言，入口的稳定性与信息的可读性同样重要。<br>
+      从打开页面的第一秒，到抵达目标内容的最后一步，简洁的引导逻辑本身就构成信任。
+    </div>
+  </div>
+
+  <!-- 承接段落：从入口到界面说明 -->
+  <div class="bridge-note">
+    <p>
+      任何一个数字服务的长期使用者，都会在意入口是否可靠、页面是否清晰。<strong>九游娱乐</strong> 在界面设计上保持了一致的风格：干净的信息层级，克制的视觉元素，让用户能够迅速将注意力放在真正的内容上。
+    </p>
+    <p>
+      平台将常用功能与说明性文本分布在明确的区域，避免过度堆砌。在下方列表中，我们归纳了四个经常被提及的界面特点——它们并非功能罗列，而是从“如何帮助用户理解”这个角度所做的提炼。
+    </p>
+    <p>
+      如果你还未前往，这里是直接通往 <a href="https://officialzh-jiuyou.com" class="inline-link">九游娱乐</a> 的链接。页面本身即是最可靠的说明书。
+    </p>
+  </div>
+
+  <!-- 特点列表：网格卡片 -->
+  <div class="feature-grid">
+    <div class="feature-card">
+      <div class="icon">◈</div>
+      <h3>分栏克制</h3>
+      <p>主要功能入口以文本卡片形式排布，不依靠夸张图标或闪烁动效吸引视线，降低认知负担。</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">◈</div>
+      <h3>语义化标题</h3>
+      <p>每个区块的标题直接描述其内容（如“常见问题”“服务指引”），无需用户猜测区域用途。</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">◈</div>
+      <h3>一致的对齐</h3>
+      <p>页面使用统一的左对齐与间距系统，在桌面与移动端保持相同的阅读节奏。</p>
+    </div>
+    <div class="feature-card">
+      <div class="icon">◈</div>
+      <h3>淡色辅助线</h3>
+      <p>通过极浅的分隔线与留白区分模块，而非强阴影或粗边框，保持界面呼吸感。</p>
+    </div>
+  </div>
+
+  <!-- 场景微块：轻量补充 -->
+  <div class="scenario-note">
+    <span>📱 移动端适配</span>
+    <span>🧭 导航扁平</span>
+    <span>📋 文字优先</span>
+    <span>🔗 直接链接</span>
+  </div>
+
+  <!-- 温和结尾 + FAQ 摘要 -->
+  <div class="gentle-outro">
+    <h2>一些常见疑问 · 简短摘要</h2>
+    <p>
+      很多用户在初次接触时都希望快速了解页面结构。以下摘录几个代表性的问题，答案均指向界面本身的设计逻辑。
+    </p>
+    <ul class="faq-preview">
+      <li><span class="q">Q：</span><span class="a">如何找到某个功能板块？—— 页面顶部导航区使用文字标签，逐一列出主要分区，点击即可前往对应区域。</span></li>
+      <li><span class="q">Q：</span><span class="a">移动端页面会丢失信息吗？—— 不会。响应式布局保留全部文本与链接，仅调整卡片排列方式。</span></li>
+      <li><span class="q">Q：</span><span class="a">是否有单独的说明页？—— 当前页面已包含核心引导，更详细的说明可参考 <a href="https://officialzh-jiuyou.com" class="inline-link">九游娱乐</a> 首页底部的帮助索引。</span></li>
+    </ul>
+    <p style="margin-top: 1rem; font-style: italic; opacity: 0.7;">
+      入口清晰，说明简洁，便已是好的开始。
+    </p>
+  </div>
+
+  <!-- 结尾留白 -->
+  <div style="text-align: center; padding: 0.8rem 0 2rem; font-size: 0.75rem; color: #63828d;">
+    <span>界面 · 入口 · 稳定性</span>
+  </div>
+</div>
+</body>
+</html>
